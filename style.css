@@ -1,7 +1,26 @@
+body {
+    text-align: center;
+}
+
 .digital-clock {
     display: flex;
+    justify-content: center;
 }
 
 .digital-clock > div {
     display: flex;
+}
+
+button {
+    background-color: #615f5f;
+    color: white;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: rgb(141, 140, 140);
+}
+
+p {
+    font-size: 20px;
 }
