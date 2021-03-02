@@ -1,14 +1,16 @@
 console.log('JavaScript - AJAX');
+console.log('CRUD operation - create');
 
 const articleListHtml = document.querySelector('.article-list');
 
-document.getElementById('get-data').addEventListener('click', function() {
-    console.log('before fetch');
+document.getElementById('get-data').addEventListener('click', getData);
+
+
+function getData() {
     fetch('https://simple-json-server-scit.herokuapp.com/posts')
         .then(handleFetchResponse)
         .then(useJSONResponse);
-    console.log('after fetch');
-})
+}
 
 
 
