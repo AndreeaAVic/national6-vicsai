@@ -1,0 +1,100 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    color: white;
+}
+
+h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    margin: 0;
+}
+
+.display-content {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.to-do-header {
+    display: flex;
+    align-items: center;
+    background-color: #ff7a7a;
+    width: 100%;
+    height: 65px;
+    padding: 10px;
+}
+
+.to-do-body {
+    height: calc(100% - 85px);
+}
+
+.existing-div {
+    display: flex;
+}
+
+.input-div {
+    padding: 10px;
+}
+
+.plus-icon-div {
+    padding: 10px;
+}
+
+#checklist-image {
+    width: 55px;
+    height: 55px;
+}
+
+#new-item-input {
+    border: 2px solid lightgray;
+    border-radius: 2px;
+    height: 25px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+}
+
+#plus-image {
+    width: 30px;
+    height: 30px;
+    transition: 0.3s ease;
+}
+
+#plus-image:hover {
+    box-shadow: 1px 3px 2px rgb(64, 167, 161);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+}
+
+.new-created-div {
+    display: flex;
+    align-items: baseline;
+}
+
+.checkbox-element {
+    margin-right: 5px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+}
+
+.delete-button-image {
+    width: 17px;
+    height: 17px; 
+    margin: 7px;
+}
+
+.delete-button-image:hover {
+    box-shadow: 1px 2px 2px rgb(181, 166, 189);
+}
