@@ -3,7 +3,7 @@ console.log('To do app homework');
 const existingDiv = document.querySelector('.existing-div');
 const toDoBody = document.querySelector('.to-do-body');
 const inputItem = document.getElementById('new-item-input');
-const addItem = document.getElementById('plus-image');
+const addItemButton = document.getElementById('plus-image');
 const user = 'avicsai';
 const payload = {
     id: user,
@@ -11,7 +11,7 @@ const payload = {
 };
 
 window.addEventListener('load', getData);
-addItem.addEventListener('click', sendDataItem);
+addItemButton.addEventListener('click', sendToDoItem);
 
 
 function getData() {
@@ -21,8 +21,9 @@ function getData() {
     .catch(() => {})
 }
 
+
 function renderToDoList(response) {
-    cleanToDo();
+    cleanToDoList();
     payload.todo = response.todo;
 
     if(payload.todo === undefined || payload.todo.length === 0) {
@@ -56,54 +57,18 @@ function renderToDoList(response) {
         }
 
         checkbox.addEventListener('click', function() {
-            if(this.checked) {
-                const task = this.nextSibling.innerText;
-                for(const itemElement of payload.todo) {
-                    if(task === itemElement.item) {
-                        itemElement.checked = true;
-                    }
-                }
-            } else {
-                const task = this.nextSibling.innerText;
-                for(const itemElement of payload.todo) {
-                    if(task === itemElement.item) {
-                        itemElement.checked = false;
-                    }
-                }
-            }
-
-            fetch(`https://simple-json-server-scit.herokuapp.com/todo/${user}`, {
-                method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json'
-                    },
-                body: JSON.stringify(payload)
-            }).then(getData);
+            checkToDoItem(this);
+            updateToDos();
         });
     
         deleteButton.addEventListener('click', function() {
-            const task = this.previousSibling.innerText;
-            for(const itemElement of payload.todo) {
-                if(task === itemElement.item) {
-                    const indexOfItem = payload.todo.indexOf(itemElement);
-                    taskDiv.remove();
-                    payload.todo.splice(indexOfItem, 1);
-
-                    fetch(`https://simple-json-server-scit.herokuapp.com/todo/${user}`, {
-                        method: "PUT",
-                        headers: {
-                            'Content-Type': 'application/json'
-                            },
-                        body: JSON.stringify(payload)
-                    }).then(getData); 
-                }
-            }
+            removeToDoItem(this);
         });
     }
 }
 
 
-function sendDataItem() {
+function sendToDoItem() {
     if(payload.todo === undefined) {
         payload.todo = [
             {
@@ -112,13 +77,7 @@ function sendDataItem() {
             }
         ];
     
-        fetch(`https://simple-json-server-scit.herokuapp.com/todo`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        }).then(getData);
+        postFirstToDo();
     } else {
         payload.todo.unshift(
             {
@@ -127,22 +86,70 @@ function sendDataItem() {
             }
         );
     
-        fetch(`https://simple-json-server-scit.herokuapp.com/todo/${user}`, {
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        }).then(getData);
+        updateToDos();
     }
 }
 
 
-function cleanToDo() {
+function cleanToDoList() {
     const divList = document.querySelectorAll('.new-created-div');
 
     for(const elem of divList) {
         elem.remove();
     }
+}
+
+
+function checkToDoItem(selectedItem) {
+    const task = selectedItem.nextSibling.innerText;
+    if(selectedItem.checked) {
+        for(const itemElement of payload.todo) {
+            if(task === itemElement.item) {
+                itemElement.checked = true;
+            }
+        }
+    } else {
+        for(const itemElement of payload.todo) {
+            if(task === itemElement.item) {
+                itemElement.checked = false;
+            }
+        }
+    }    
+}
+
+
+function removeToDoItem(selectedItem) {
+    const task = selectedItem.previousSibling.innerText;
+    for(const itemElement of payload.todo) {
+        if(task === itemElement.item) {
+            const indexOfItem = payload.todo.indexOf(itemElement);
+            selectedItem.parentElement.remove();
+            payload.todo.splice(indexOfItem, 1);
+
+            updateToDos();
+        }
+    }
+}
+
+
+function postFirstToDo() {
+    fetch(`https://simple-json-server-scit.herokuapp.com/todo`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(getData);
+}
+
+
+function updateToDos() {
+    fetch(`https://simple-json-server-scit.herokuapp.com/todo/${user}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(getData);
 }
 
