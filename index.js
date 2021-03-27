@@ -53,23 +53,23 @@ let keyUpPress = false;
 document.addEventListener('keydown', (event) => {
     if(event.key === 'ArrowRight') {
         keyRightPress = true;
+        spaceship.moveRight();
     }
-    if(keyRightPress) spaceship.moveRight();
 
     if(event.key === 'ArrowLeft') {
         keyLeftPress = true;
+        spaceship.moveLeft();
     }
-    if(keyLeftPress) spaceship.moveLeft();
 
     if(event.key === 'ArrowDown') {
         keyDownPress = true;
+        spaceship.moveDown();
     }
-    if(keyDownPress) spaceship.moveDown();
 
     if(event.key === 'ArrowUp') {
         keyUpPress = true;
+        spaceship.moveUp();
     }
-    if(keyUpPress) spaceship.moveUp();
 });
 
 document.addEventListener('keyup', (event) => {
