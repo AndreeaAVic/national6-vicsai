@@ -33,43 +33,31 @@ class Spaceship {
     selectedSpaceship() {
         document.addEventListener('keydown', (event) => {
             if(this.active) {
-                if(event.key === 'ArrowRight') {
-                    this.moveRight();
-                }
-            
-                if(event.key === 'ArrowLeft') {
-                    this.moveLeft();
-                }
-            
-                if(event.key === 'ArrowDown') {
-                    this.moveDown();
-                }
-            
-                if(event.key === 'ArrowUp') {
-                    this.moveUp();
-                }
+                this.moveSpaceship(event.key);
             }
         });
     }
 
-    moveRight() {
-        this.x += 5;
-        this.ref.style.transform = `translate(${this.x}px, ${this.y}px)`;
-    }
-
-    moveLeft() {
-        this.x -= 5;
-        this.ref.style.transform = `translate(${this.x}px, ${this.y}px)`;
-    }
-
-    moveDown() {
-        this.y += 5;
-        this.ref.style.transform = `translate(${this.x}px, ${this.y}px)`;
-    }
-
-    moveUp() {
-        this.y -= 5;
-        this.ref.style.transform = `translate(${this.x}px, ${this.y}px)`;
+    moveSpaceship(direction) {
+        if(direction === 'ArrowRight') {
+            this.x += 5;
+            this.ref.style.transform = `translate(${this.x}px, ${this.y}px)`;
+        }
+    
+        if(direction === 'ArrowLeft') {
+            this.x -= 5;
+            this.ref.style.transform = `translate(${this.x}px, ${this.y}px)`;
+        }
+    
+        if(direction === 'ArrowDown') {
+            this.y += 5;
+            this.ref.style.transform = `translate(${this.x}px, ${this.y}px)`;
+        }
+    
+        if(direction === 'ArrowUp') {
+            this.y -= 5;
+            this.ref.style.transform = `translate(${this.x}px, ${this.y}px)`;
+        }
     }
 }
 
@@ -82,20 +70,6 @@ document.getElementById('generate').addEventListener('click', () => {
 
 document.addEventListener('keydown', (event) => {
     if(spaceship.active === false) {
-        if(event.key === 'ArrowRight') {
-            spaceship.moveRight();
-        }
-    
-        if(event.key === 'ArrowLeft') {
-            spaceship.moveLeft();
-        }
-    
-        if(event.key === 'ArrowDown') {
-            spaceship.moveDown();
-        }
-    
-        if(event.key === 'ArrowUp') {
-            spaceship.moveUp();
-        }
+        spaceship.moveSpaceship(event.key);
     }
 });
