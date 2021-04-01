@@ -118,6 +118,8 @@ document.addEventListener('keyup', (event) => {
 //// --- Collision detection 
 function collisionDetection(player, obstacles) {
     for(const obstacle of obstacles) {
+        console.log(player.x, obstacle.x);
+
         if (
             (player.x <= obstacle.x &&
               obstacle.x <= player.x + player.width &&
@@ -136,32 +138,27 @@ function collisionDetection(player, obstacles) {
 
 const player = new Player();
 const obstacleFactory = new ObstacleFactory();
-// const obstacle = new Obstacle();
 
 // Game Loop
 let count = 0;
 
 let gameLoop = setInterval(() => {
     console.log(keyUpPress);
-})
-
-setInterval(() => {
-    console.log(keyUpPress);
-
-    if(keyUpPress) player.moveUp();
-    if(keyDownPress) player.moveDown();
-
-    if(count % 10 === 0) obstacleFactory.createObstacle();
-
+  
+    if (keyUpPress) player.moveUp();
+    if (keyDownPress) player.moveDown();
+  
+    if (count % 10 === 0) obstacleFactory.createObstacle();
+  
     obstacleFactory.moveObstacles();
-    if(collisionDetection(player, obstacleFactory.obstacles)) {
-        clearInterval(gameLoop);
-        alert('You hit an obstacle');
-        window.location = '/';
+  
+    if (collisionDetection(player, obstacleFactory.obstacles)) {
+      clearInterval(gameLoop);
+      alert("You hit an obstacle");
+      window.location = "/";
     }
-
+  
     obstacleFactory.destroyObstacles();
-    // obstacle.moveLeft();
-
+  
     count++;
 }, 50);
