@@ -183,7 +183,6 @@ let gameLoop = setInterval(() => {
     if(collisionDetection(player, obstacleFactory.obstacles) && lives.currentNumberOfLives > 1) {       
         lives.currentNumberOfLives--;
         lives.removeLives();
-        obstacleFactory.moveObstacles();
     } else if ((collisionDetection(player, obstacleFactory.obstacles)) && lives.currentNumberOfLives === 1) {
         clearInterval(gameLoop);
         alert("You lost! Game over!");
