@@ -7,7 +7,6 @@ class GameObject {
         this.x = 0;
         this.y = 0;
         this.generateRef();
-        // this.move(50, 225);
     }
 
     generateRef() {
@@ -92,41 +91,36 @@ class ObstacleFactory {
 class Lives {
     constructor() {
         this.currentNumberOfLives = 3;
-        this.numberOfImage = [];
+        this.livesArray = [];
+        this.generateLives();
         this.renderLives();
+    }
+
+    generateLives() {
+        for(let i = 0; i < 3; i++) {
+            const life = document.createElement('img');
+            life.src = 'heart.png';
+            life.style.width = '30px';
+            life.style.height = '30px';
+
+            this.livesArray.push(life);
+        }
     }
 
     renderLives() {
         this.ref = document.createElement('div');
-        const life1 = document.createElement('img');
-        const life2 = document.createElement('img');
-        const life3 = document.createElement('img');
-        this.numberOfImage.push(life1);
-        this.numberOfImage.push(life2);
-        this.numberOfImage.push(life3);
-        life1.src = 'heart.png';
-        life2.src = 'heart.png';
-        life3.src = 'heart.png';
-        life1.style.width = '30px';
-        life1.style.height = '30px';
-        life2.style.width = '30px';
-        life2.style.height = '30px';
-        life3.style.width = '30px';
-        life3.style.height = '30px';
         this.ref.style.position = 'absolute';
         this.ref.style.top = '90px';
 
         document.body.appendChild(this.ref);
-        this.ref.appendChild(life1);
-        this.ref.appendChild(life2);
-        this.ref.appendChild(life3);
+        for(const life of this.livesArray) {
+            this.ref.appendChild(life);
+        }
     }
 
     removeLives() {
-        if(this.currentNumberOfLives < this.numberOfImage.length) {
-            const heart = this.numberOfImage.pop();
-            heart.remove();
-        }
+        const heart = this.livesArray.pop();
+        heart.remove();
     }
 }
 
@@ -159,19 +153,12 @@ document.addEventListener('keyup', (event) => {
 //// --- Collision detection 
 function collisionDetection(player, obstacles) {
     for(const obstacle of obstacles) {
-        // console.log(player.x, obstacle.x);
-
-        if (
-            (player.x <= obstacle.x &&
-              obstacle.x <= player.x + player.width &&
-              player.y <= obstacle.y &&
-              obstacle.y <= player.y + player.height) ||
-            (player.x <= obstacle.x + obstacle.width &&
-              obstacle.x + obstacle.width <= player.x + player.width &&
-              player.y <= obstacle.y + obstacle.height &&
-              obstacle.y + obstacle.height <= player.y + player.height)
+        if(
+            obstacle.x === (player.x + player.width) - 25 &&
+            obstacle.y + obstacle.height >= player.y &&
+            obstacle.y <= player.y + player.height
         )
-
+        
         return true;
     }
 
@@ -186,30 +173,25 @@ const obstacleFactory = new ObstacleFactory();
 let count = 0;
 
 let gameLoop = setInterval(() => {
-    // console.log(keyUpPress);
-  
     if (keyUpPress) player.moveUp();
     if (keyDownPress) player.moveDown();
-  
-    if (count % 10 === 0) obstacleFactory.createObstacle();
-  
-    obstacleFactory.moveObstacles();
 
-    if(collisionDetection(player, obstacleFactory.obstacles)) {
+    if (count % 10 === 0) obstacleFactory.createObstacle();
+
+    obstacleFactory.moveObstacles();
+    
+    if(collisionDetection(player, obstacleFactory.obstacles) && lives.currentNumberOfLives > 1) {       
         lives.currentNumberOfLives--;
         lives.removeLives();
+        obstacleFactory.moveObstacles();
+    } else if ((collisionDetection(player, obstacleFactory.obstacles)) && lives.currentNumberOfLives === 1) {
+        clearInterval(gameLoop);
+        alert("You lost! Game over!");
+        window.location = "/";
     }
-  
-    // if ((collisionDetection(player, obstacleFactory.obstacles)) &&  lives.currentNumberOfLives > 1) {
-    //     lives.currentNumberOfLives--;
-    //     lives.removeLives();
-    // } else if ((collisionDetection(player, obstacleFactory.obstacles)) && lives.currentNumberOfLives === 1) {
-    //     clearInterval(gameLoop);
-    //     alert("You hit an obstacle");
-    //     window.location = "/";
-    // }
 
     obstacleFactory.destroyObstacles();
-  
+
     count++;
 }, 50);
+ 
