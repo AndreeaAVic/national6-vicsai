@@ -7,6 +7,6 @@ console.log(aRandomNumber);
 const aRandomNumberWithPixel = addPixel(aRandomNumber);
 console.log(aRandomNumberWithPixel);
 
-const aRandomNumberWithPercentage = addPixel(aRandomNumber);
+const aRandomNumberWithPercentage = addPercentage(aRandomNumber);
 console.log(aRandomNumberWithPercentage);
 
