@@ -1,0 +1,22 @@
+{
+  "name": "national6-vicsai",
+  "version": "1.0.0",
+  "description": "project of scit",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreeaAVic/national6-vicsai.git"
+  },
+  "author": "andreea-vicsai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreeaAVic/national6-vicsai/issues"
+  },
+  "homepage": "https://github.com/AndreeaAVic/national6-vicsai#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
