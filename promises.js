@@ -1,5 +1,27 @@
 console.log('Course 20 promises');
 
+function firstStep() {
+  setTimeout(() => {
+    console.log("End of first step -> callback");
+    secondStep();
+  }, 2000);
+}
+
+function secondStep() {
+  setTimeout(() => {
+    console.log("End of second step -> callback");
+    thirdStep();
+  }, 1000);
+}
+
+function thirdStep() {
+  setTimeout(() => {
+    console.log("End of third step");
+  }, 500);
+}
+
+firstStep();
+
 function firstStep(number) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
