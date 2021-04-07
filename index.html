@@ -5,8 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-    <p>Work with git</p>
+<body class="home-page">
+    <div class="header">
+      <button id="logout">Log Out</button>
+    </div>
+
+    <div class="content">
+      <p>Dogs</p>
+      <div class="container">
+        <div id="breeds"></div>
+        <div id="images">
+          <div id="images-container">
+            <img id="breed-image" />
+          </div>
+          <div id="pagination">
+            <button id="backward"><</button>
+            <p id="page-number">1</p>
+            <button id="forward">></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
 </body>
 </html>
