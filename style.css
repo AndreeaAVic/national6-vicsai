@@ -85,3 +85,15 @@ body {
 #pagination > * {
   margin: 10px;
 }
+
+.breed {
+  text-decoration: none;
+}
+
+.breed--selected {
+  text-decoration: underline;
+}
+
+.breed:hover {
+  cursor: pointer;
+}
