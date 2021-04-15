@@ -14,15 +14,6 @@ window.addEventListener("load", () => {
     getAPIData('https://dog.ceo/api/breeds/list/all', renderBreeds);
 });
 
-// function getAPIData(url, callback) {
-//     fetch(url)
-//     .then((r) => r.json())
-//     .then(callback)
-//     .catch((error) => {
-//         console.log(error);
-//     });
-// }
-
 function renderBreeds(response) {
     const listOfBreeds = response.message;
     for(const breed in listOfBreeds) {
