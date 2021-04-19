@@ -5,3 +5,8 @@
     display: flex;
     align-items: center;
 }
+
+.app-header__title {
+    margin-left: 20px;
+    color: white;
+}
