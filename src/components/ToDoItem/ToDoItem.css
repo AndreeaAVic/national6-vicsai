@@ -1,0 +1,12 @@
+.to-do-item {
+    display: flex;
+    align-items: center;
+}
+
+.to-do-item img {
+    height: 20px;
+}
+
+.to-do-item > * {
+    margin-right: 10px;
+}
