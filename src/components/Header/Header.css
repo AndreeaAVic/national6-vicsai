@@ -4,9 +4,19 @@
     height: 50px;
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .app-header__title {
     margin-left: 20px;
     color: white;
+}
+
+.app-menu {
+    display: flex;
+    width: 15%;
+    height: 125px;
+    position: absolute;
+    top: 5px;
+    margin-left: 20px;
 }
