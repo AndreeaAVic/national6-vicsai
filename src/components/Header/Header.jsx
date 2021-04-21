@@ -1,13 +1,20 @@
 import { AppLogo } from "../AppLogo/AppLogo";
-import "./Header.css";
 import { MenuButton } from "./Menu/MenuButton/MenuButton";
 import { MenuFlyout } from "./Menu/MenuFlyout/MenuFlyout";
+import "./Header.css";
 
 export function Header() {
   return (
     <div className="app-header">
       <div className="app-menu">
-        <MenuButton />
+        <MenuButton 
+          onMouseEnter={() => {
+            document.getElementById("flyout").style.display = "block";
+          }}
+          onMouseLeave={() => {
+            document.getElementById("flyout").style.display = "none";
+          }}
+        />
         <MenuFlyout />
       </div>
       <AppLogo />
