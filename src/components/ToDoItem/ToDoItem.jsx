@@ -8,7 +8,7 @@ export function ToDoItem(props) {
             <input type="checkbox" defaultChecked={props.checkValue} />
             <p>{props.label}</p>
             <img 
-                src="https://www.flaticon.com/svg/vstatic/svg/748/748023.svg?token=exp=1618938237~hmac=cdad5d00f44b62c6cce76081ce2fa5e9" 
+                src="https://image.freepik.com/free-icon/trash-bin-symbol_318-10194.jpg" 
                 alt="trash" 
                 onClick={() => props.removeItem(props.label)}
             />
