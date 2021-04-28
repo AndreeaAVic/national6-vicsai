@@ -1,0 +1,19 @@
+.form-message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.form-message p {
+    margin: 0;
+    width: 150px;
+}
+
+.form-message textarea {
+    margin: 0;
+    width: 300px;
+    height: 300px;
+    padding: 5px;
+    border: 1px solid lightgray;
+    outline: none;
+}

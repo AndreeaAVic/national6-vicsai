@@ -1,0 +1,18 @@
+.form-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-field p {
+    margin: 0;
+    width: 150px;
+}
+
+.form-field input {
+    margin: 0;
+    width: 300px;
+    padding: 5px;
+    border: 1px solid lightgray;
+    outline: none;
+}
