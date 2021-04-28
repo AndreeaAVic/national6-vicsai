@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import { FormField } from './FormField/FormField';
+import { FormMessage } from './FormMessage/FormMessage';
+import { SendButton } from './SendButton/SendButton';
 
 import './Form.css';
 
@@ -10,8 +12,8 @@ export class Form extends Component {
                 <FormField label='FIRST NAME' />
                 <FormField label='LAST NAME' />
                 <FormField label='EMAIL' />
-                <FormField label='MESSAGE' />
-                <button>Send</button>
+                <FormMessage label='MESSAGE' />
+                <SendButton />
             </div>
         );
     };
