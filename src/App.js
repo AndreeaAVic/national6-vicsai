@@ -1,31 +1,26 @@
 import { Header } from "./components/Header/Header";
-// import { ToDoItem } from "./components/ToDoItem/ToDoItem";
-// import { ToDoItemWithState } from "./components/ToDoItemWithState/ToDoItemWithState";
-import { ToDoList } from "./components/ToDoList/ToDoList";
-import { Component } from "react";
+import { Home } from "./pages/Home/Home";
+import { About } from "./pages/About/About";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import './App.css';
 
-class App extends Component {
-  state = {
-    showToDoList: true,
-  };
-
-  toggleToDoListVisibility = () => {
-    this.setState({ showToDoList: !this.state.showToDoList });
-  };
-
-  render() {
-    return (
+function App() {
+  return (
+    <Router>
       <div className="App" id="app">
         <Header />
-        <button onClick={this.toggleToDoListVisibility}>
-          Hide/Show ToDoList
-        </button>
-        {this.state.showToDoList ? <ToDoList /> : null}
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
       </div>
-    );
-  }
+    </Router>
+  );
 }
 
 export default App;
