@@ -1,10 +1,12 @@
 import './FormMessage.css';
 
 export function FormMessage(props) {
+    const {label, onChange, isValid, style} = props;
+
     return (
         <div className='form-message'>
-            <p>{props.label}</p>
-            <textarea></textarea>
+            <p>{label}</p>
+            <textarea onChange={onChange} style={!isValid ? style : {}}></textarea>
         </div>
     );
 }
