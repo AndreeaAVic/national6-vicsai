@@ -6,7 +6,7 @@ export function FormField(props) {
     return (
         <div className='form-field'>
             <p>{label}</p>
-            <input type='text' onChange={onChange} style={!isValid ? style : {}}/>
+            <input type='text' onChange={onChange} style={!isValid ? style : {}} />
         </div>
     );
 }

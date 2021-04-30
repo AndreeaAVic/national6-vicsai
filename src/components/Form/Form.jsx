@@ -65,10 +65,10 @@ export class Form extends Component {
     render() {
         const { isValid } = this.state;
         const inputStyle = {
-            border: "2px solid red"
+            border: '2px solid red'
         }
         const sentMessageBoxStyle = {
-            display: "flex"
+            display: 'flex'
         }
 
         return (
