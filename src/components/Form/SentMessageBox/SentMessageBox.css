@@ -1,0 +1,17 @@
+.sent-message-box {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    border: 1px solid lightgray;
+    width: 300px;
+    padding: 5px;
+}
+
+.sent-message-box p {
+    margin-left: auto;
+}
+
+.sent-message-box button {
+    margin-left: auto;
+}

@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { FormField } from './FormField/FormField';
 import { FormMessage } from './FormMessage/FormMessage';
 import { SendButton } from './SendButton/SendButton';
+import { SentMessageBox } from './SentMessageBox/SentMessageBox';
 
 import './Form.css';
 
@@ -16,7 +17,8 @@ export class Form extends Component {
         firstNameInputValue: "",
         lastNameInputValue: "",
         emailInputValue: "",
-        messageTextareaValue: ""
+        messageTextareaValue: "",
+        noDisplay: true
     }
 
     handleInputChange = (event, key) => {
@@ -26,7 +28,7 @@ export class Form extends Component {
     }
 
     setInvalidInputKey = () => {
-        const {isValid} = this.state;
+        const { isValid } = this.state;
 
         if(this.state.firstNameInputValue === "") {
             isValid.firstNameInputValue = false;
@@ -44,14 +46,29 @@ export class Form extends Component {
             isValid.messageTextareaValue = false; 
         }
 
-        this.setState({isValid});
+        if(
+            isValid.firstNameInputValue === true &&
+            isValid.lastNameInputValue === true &&
+            isValid.emailInputValue === true &&
+            isValid.messageTextareaValue === true
+        ) {
+            this.setState({ isValid, noDisplay: false });
+        } else {
+            this.setState({ isValid });
+        }
+    }
+
+    closeMessageSentBox = () => {
+        this.setState({ noDisplay: true });
     }
 
     render() {
-        console.log(this.state);
-        const {isValid} = this.state;
+        const { isValid } = this.state;
         const inputStyle = {
             border: "2px solid red"
+        }
+        const sentMessageBoxStyle = {
+            display: "flex"
         }
 
         return (
@@ -60,7 +77,7 @@ export class Form extends Component {
                     label='FIRST NAME' 
                     value={this.state.firstNameInputValue} 
                     onChange={(event) => this.handleInputChange(event, 'firstNameInputValue')} 
-                    style={ inputStyle }
+                    style={inputStyle}
                     isValid={isValid.firstNameInputValue} 
                 />
                 <FormField 
@@ -85,6 +102,7 @@ export class Form extends Component {
                     isValid={isValid.messageTextareaValue}
                 />
                 <SendButton onClick={this.setInvalidInputKey} />
+                <SentMessageBox noDisplay={this.state.noDisplay} style={sentMessageBoxStyle} onClick={this.closeMessageSentBox} />
             </div>
         );
     };
